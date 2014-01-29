@@ -1,5 +1,6 @@
-[InstallShield Silent]
-Version=v7.00
-File=Log File
-[ResponseResult]
-ResultCode=0
+This is the first line.
+
+This is the test file for post test.
+
+
+This is the last line.
