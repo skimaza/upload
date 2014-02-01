@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Upload::Application.config.secret_key_base = '1733bb8d6933f44e430be79ea1417decc434f2dad8fd4359b4dd3df220f139217f9f20c8fcf379f6b451307cdcc96f71c1e728db196c5029af9b7c52e58a1ce8'
+#Upload::Application.config.secret_key_base = '1733bb8d6933f44e430be79ea1417decc434f2dad8fd4359b4dd3df220f139217f9f20c8fcf379f6b451307cdcc96f71c1e728db196c5029af9b7c52e58a1ce8'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Upload::Application.config.secret_key_base = secure_token
