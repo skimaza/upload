@@ -1,4 +1,6 @@
 Upload::Application.routes.draw do
+  resources :logs
+
   resources :datafiles
   
   match 'upload', to: 'uploads#index', via: [:get]
