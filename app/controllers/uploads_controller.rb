@@ -1,7 +1,7 @@
 class UploadsController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :except => [:update, :create]
 	def index
-		render :file => 'app\views\upload\new.html.erb'
+		render :file => 'app/views/upload/new.html.erb'
 	end
 
 	def show
