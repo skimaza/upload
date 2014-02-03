@@ -31,4 +31,12 @@ describe "Uploads" do
   		specify { expect(response).to be_success }
   	end
   end
+
+  describe "Upload log test" do
+    describe "with valid parameters" do
+      it "should create new log" do
+        expect { post upload_path, upload: { log: "test message" } }.to change(Log, :count).by(1)
+      end      
+    end
+  end
 end
