@@ -26,14 +26,20 @@ class LogsController < ApplicationController
   def create
     @log = Log.new(log_params)
 
-    respond_to do |format|
-      if @log.save
-        format.html { redirect_to @log, notice: 'Log was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @log }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @log.errors, status: :unprocessable_entity }
-      end
+    # respond_to do |format|
+    #   if @log.save
+    #     format.html { redirect_to @log, notice: 'Log was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @log }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @log.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    if @log.save
+      return true
+    else
+      return nil
     end
   end
 

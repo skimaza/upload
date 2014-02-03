@@ -13,7 +13,7 @@ class Datafile < ActiveRecord::Base
 			log = upload['log']
 			if (log)
 				ip = Thread.current[:request].remote_ip
-				time = Time.now.utc.localtime.to_s
+				time = Time.now.to_s
 				File.open(path, "a") { |f| f.write(time + "|" + ip + "|" + log + "\n") }
 			end
 		end

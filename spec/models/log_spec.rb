@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Log do
 
   before do
-  	@log = Log.new(ip: "192.168.0.100", message: "Message in rspec")
+  	@log = Log.new(ip: "192.168.0.100", time: Time.now.to_s, message: "Message in rspec")
   end
 
   subject { @log }
@@ -23,6 +23,11 @@ describe Log do
   	it { should_not be_valid }
   end
 
+  describe "when time is not present" do
+    before { @log.time = " " }
+    it { should_not be_valid }
+  end
+
   describe "when ip is too long" do
   	before { @log.ip = "1" * 101 }
   	it { should_not be_valid }
@@ -31,5 +36,10 @@ describe Log do
   describe "when message is too long" do
   	before { @log.message = "a" * 201 }
   	it { should_not be_valid }
+  end
+
+  describe "when time is too long" do
+    before { @log.time = "9" * 51 }
+    it { should_not be_valid }
   end
 end

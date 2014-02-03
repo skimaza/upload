@@ -11,7 +11,11 @@ class UploadsController < ApplicationController
 	end
 
 	def uploadFile
-		post = Datafile.save(params[:upload])
-		render :text => "Log has been uploaded successfully"
+		post = Log.save(params[:upload])
+		if post
+			render :text => "Log has been uploaded successfully"
+		else
+			render :text => "Upload failed"
+		end
 	end
 end
